@@ -1,9 +1,6 @@
 # Build files
 /build/*
 
-# Eclipse files
-/.project
-
 # Backup files
 *~
 
