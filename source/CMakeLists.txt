@@ -14,7 +14,7 @@ pkg_check_modules(GTKMM gtkmm-2.4)
 
 # List Sources
 set(sources
-	source/main.cpp
+	main.cpp
 )
 
 
