@@ -1,0 +1,12 @@
+# Build files
+/build/*
+
+# Eclipse files
+/.project
+
+# Backup files
+*~
+
+# Mac OS X specific stuff
+.DS_Store
+
