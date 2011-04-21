@@ -10,6 +10,7 @@ project(voltam)
 # Find Packages
 find_package(PkgConfig)
 pkg_check_modules(GTKMM gtkmm-2.4)
+pkg_check_modules(GNOMEMM gnome-vfsmm-2.6)
 
 
 # List Sources
