@@ -18,12 +18,19 @@ find_package(PkgConfig)
 
 # gtkmm
 pkg_check_modules(GTKMM gtkmm-2.4)
-link_directories(${GTKMM_LIBRARY_DIRS})
 include_directories(${GTKMM_INCLUDE_DIRS})
 
 # Boost
 find_package(Boost)
 include_directories(${Boost_INCLUDE_DIRS})
+
+# Lua
+find_package(Lua51)
+include_directories(${LUA_INCLUDE_DIR})
+
+# luabind
+pkg_check_modules(LUABIND luabind)
+include_directories(${LUABIND_INCLUDE_DIRS})
 
 
 
@@ -36,7 +43,7 @@ set(sources
 	main.cpp
 	
 	# Symbol
-	#symbol/symbol.cpp
+	symbol/symbol.cpp
 	symbol/manager.cpp
 	symbol/generator.cpp
 	symbol/generatormanager.cpp
@@ -50,5 +57,7 @@ add_executable(
 target_link_libraries(
 	voltam
 	${GTKMM_LIBRARIES}
+	${LUA_LIBRARIES}
+	${LUABIND_LIBRARIES}
 )
 
