@@ -18,6 +18,6 @@ public:
 	const SymbolGenerator::ptr & getGenerator(std::string name);
 	
 	Symbol::ptr generateSymbol(std::string name);
-	Symbol::ptr generateSymbol(std::string name, std::string arguments);
+	Symbol::ptr generateSymbol(std::string name, Symbol::Arguments arguments);
 };
 

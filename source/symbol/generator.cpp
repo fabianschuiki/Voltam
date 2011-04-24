@@ -35,19 +35,23 @@ SymbolGenerator::~SymbolGenerator()
 
 Symbol::ptr SymbolGenerator::generateSymbol()
 {
-	return generateSymbol("");
+	return generateSymbol(Symbol::Arguments());
 }
 
-Symbol::ptr SymbolGenerator::generateSymbol(std::string arguments)
+Symbol::ptr SymbolGenerator::generateSymbol(Symbol::Arguments arguments)
 {
 	try {
-		//Call the Lua function to synthesize the given symbol.
-		assert(luaState);
-		Symbol::ptr symbol = luabind::call_function<Symbol::ptr>(luaState, "main", arguments);
+		//Convert the arguments to a Lua table object.
+		luabind::object argTable = luabind::newtable(luaState);
+		for (Symbol::Arguments::const_iterator it = arguments.begin(); it != arguments.end(); it++)
+			argTable[it->first] = it->second;
+		
+		//Call the Lua function to generate the symbol.
+		Symbol::ptr symbol = luabind::call_function<Symbol::ptr>(luaState, "main", argTable);
 		return symbol;
 	}
 	catch (luabind::error& e) {
-		std::cerr << "unable to generate symbol «" << name << "» with arguments «" << arguments << "»: " << e.what() << std::endl;
+		std::cerr << "unable to generate symbol «" << name << "»: " << e.what() << std::endl;
 		std::cerr << " -- " << lua_tostring(luaState, -1) << std::endl; lua_pop(luaState, 1);
 	}
 	return Symbol::ptr();

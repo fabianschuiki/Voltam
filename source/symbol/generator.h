@@ -18,6 +18,6 @@ public:
 	~SymbolGenerator();
 	
 	Symbol::ptr generateSymbol();
-	Symbol::ptr generateSymbol(std::string arguments);
+	Symbol::ptr generateSymbol(Symbol::Arguments arguments);
 };
 

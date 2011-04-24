@@ -9,7 +9,7 @@
 
 class SymbolManager {
 	
-	typedef std::map< std::string, Symbol::ptr > AttributedSymbol;
+	typedef std::map< Symbol::Arguments, Symbol::ptr > AttributedSymbol;
 	typedef std::map< std::string, AttributedSymbol > NamedAttributedSymbol;
 	
 	NamedAttributedSymbol store;
@@ -18,6 +18,6 @@ public:
 	static SymbolManager * getSingleton();
 	
 	const Symbol::ptr & getSymbol(std::string name);
-	const Symbol::ptr & getSymbol(std::string name, std::string arguments);
+	const Symbol::ptr & getSymbol(std::string name, Symbol::Arguments arguments);
 };
 

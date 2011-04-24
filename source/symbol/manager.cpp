@@ -12,10 +12,10 @@ SymbolManager * SymbolManager::getSingleton()
 
 const Symbol::ptr & SymbolManager::getSymbol(std::string name)
 {
-	return getSymbol(name, "");
+	return getSymbol(name, Symbol::Arguments());
 }
 
-const Symbol::ptr & SymbolManager::getSymbol(std::string name, std::string arguments)
+const Symbol::ptr & SymbolManager::getSymbol(std::string name, Symbol::Arguments arguments)
 {
 	//Create the symbol if required.
 	if (!store.count(name) || !store[name].count(arguments))

@@ -22,10 +22,10 @@ const SymbolGenerator::ptr & SymbolGeneratorManager::getGenerator(std::string na
 
 Symbol::ptr SymbolGeneratorManager::generateSymbol(std::string name)
 {
-	return generateSymbol(name, "");
+	return generateSymbol(name, Symbol::Arguments());
 }
 
-Symbol::ptr SymbolGeneratorManager::generateSymbol(std::string name, std::string arguments)
+Symbol::ptr SymbolGeneratorManager::generateSymbol(std::string name, Symbol::Arguments arguments)
 {
 	//Try to find the appropriate generator for this symbol.
 	SymbolGenerator::ptr generator = getGenerator(name);
