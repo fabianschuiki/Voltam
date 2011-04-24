@@ -48,6 +48,46 @@ function main(arguments)
 	-- Do stuff...
 	io.write("Generating resistor «" .. table.tostring(args) .. "»\n")
 	s = Symbol()
+	
+	-- Create the four edge nodes.
+	ne = Node()
+	ne.x = 1
+	ne.y = 0.3
+	
+	se = Node()
+	se.x = 1
+	se.y = -0.3
+	
+	nw = Node()
+	nw.x = -1
+	nw.y = 0.3
+	
+	sw = Node()
+	sw.x = -1
+	sw.y = -0.3
+	
+	s:addNode("ne", ne)
+	s:addNode("se", se)
+	s:addNode("nw", nw)
+	s:addNode("sw", sw)
+	
+	-- Create the path whick strokes a line around the for edge nodes.
+	path = Path()
+	path.closed = true
+	path.nodes:push_back("ne")
+	path.nodes:push_back("se")
+	path.nodes:push_back("sw")
+	path.nodes:push_back("nw")
+	
+	s:addPath("main", path)
+	
+	-- Add a stroke for the main path.
+	stroke = Stroke()
+	stroke.path = "main"
+	stroke.layer = 1
+	
+	s.strokes:push_back(stroke)
+	
 	return s
 end
 
