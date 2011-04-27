@@ -6,30 +6,56 @@
 
 
 namespace Voltam {
+	/**
+	 * AbstractSmartPointer
+	 *
+	 * Hosts one shared map that associates a pointer with a retain count. The templated smart
+	 * pointer is derived from the abstract version and uses its retain and release functions to
+	 * modify the retain count table.
+	 */
 	class AbstractSmartPointer {
+		
+		//Map associating a pointer and a retain count.
 		static std::map<void *, long> rc;
 		
 	public:
+		//Increases the retain count of the given pointer. If the pointer is not yet present in the
+		//map a new entry is created.
 		template <typename T> void retain(T * obj) {
-			std::cout << "retain " << obj << std::endl;
 			if (!rc.count(obj))
 				rc[obj] = 0;
 			rc[obj]++;
 		}
 		
+		//Decreases the retain count of the given pointer. If the count reaches zero the pointer is
+		//deleted immediately. The pointer will blow up if the object trying to be deleted is not in
+		//the map.
 		template <typename T> void release(T * obj) {
-			std::cout << "release " << obj << std::endl;
 			assert(rc.count(obj) && "trying to release an unmanaged pointer");
 			rc[obj]--;
 	
 			if (rc[obj] <= 0) {
 				rc.erase(obj);
 				delete obj;
-				std::cout << "# deleted " << obj << ", " << rc.size() << " objects left" << std::endl;
 			}
 		}
 	};
 	
+	
+	/**
+	 * SmartPointer
+	 *
+	 * Wraps a pointer to a class specified through the tempalte parameter T. Assigning an object to
+	 * the smart pointer will cause it to increase the object's retain count in the shared retain
+	 * count map. If the assignment overwrites an existing object assigned to the pointer, the
+	 * latter's retain count is decreased.
+	 *
+	 * It is okay to access an object by its raw pointer in parallel to having it assigned in a
+	 * samrt pointer, as long as you can guarantee that at the time you're using the object direct-
+	 * ly there's a smart pointer around somewhere safeguarding its existence.
+	 *
+	 * It is however ABSOLUTELY NOT okay to delete objects still safeguarded by a smart pointer.
+	 */
 	template <class T>
 	class SmartPointer : private AbstractSmartPointer {
 		T * obj;
@@ -56,7 +82,8 @@ namespace Voltam {
 			return *this;
 		}
 		
-		//Dereferencing
+		//Dereferencing operators that provide some transparency so that using the smart pointer
+		//feels the same as using the raw pointer itself.
 		T & operator *() const {
 			assert(obj != NULL && "tried to * on a NULL pointer");
 			return *obj;
@@ -66,13 +93,15 @@ namespace Voltam {
 			return obj;
 		}
 		
-		//Auto Typecast
+		//In case something needs the object itself instead of the raw pointer, we silently step out
+		//of the way.
 		operator T *() const { return obj; }
 		
-		//Logic
+		//Checking for pointer validity.
 		inline operator bool() const { return (bool)obj; }
 		inline bool operator !() const { return !(obj); }
 		
+		//Comparing to pointers and smart pointers.
 		inline bool operator ==(const T * o) const { return (obj == o); }
 		inline bool operator ==(const SmartPointer<T> & p) const { return (obj == p.obj); }
 	};
