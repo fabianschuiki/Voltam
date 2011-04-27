@@ -21,23 +21,23 @@ namespace Voltam {
 			Vector2D(const Vector2D<T> & v) { *this = v; }
 			
 			//Assignment
-			Vector2D<T> & operator=(const Vector2D<T> & v) { x = v.x; y = v.y; return *this; }
-			Vector2D<T> operator-() const { return Vector2D<T>(-x, -y); }
+			inline Vector2D<T> & operator=(const Vector2D<T> & v) { x = v.x; y = v.y; return *this; }
+			inline Vector2D<T> operator-() const { return Vector2D<T>(-x, -y); }
 			
 			//Operators
-			Vector2D<T> operator+(const Vector2D<T> & v) const { return Vector2D<T>(x + v.x, y + v.y); }
-			Vector2D<T> operator-(const Vector2D<T> & v) const { return Vector2D<T>(x - v.x, y - v.y); }
-			Vector2D<T> operator*(const T & v) const { return Vector2D<T>(x*v, y*v); }
-			Vector2D<T> operator/(const T & v) const { return Vector2D<T>(x/v, y/v); }
+			inline Vector2D<T> operator+(const Vector2D<T> & v) const { return Vector2D<T>(x + v.x, y + v.y); }
+			inline Vector2D<T> operator-(const Vector2D<T> & v) const { return Vector2D<T>(x - v.x, y - v.y); }
+			inline Vector2D<T> operator*(const T & v) const { return Vector2D<T>(x*v, y*v); }
+			inline Vector2D<T> operator/(const T & v) const { return Vector2D<T>(x/v, y/v); }
 			
-			Vector2D<T> & operator+=(const Vector2D<T> & v) { x += v.x; y += v.y; return *this; }
-			Vector2D<T> & operator-=(const Vector2D<T> & v) { x -= v.x; y -= v.y; return *this; }
-			Vector2D<T> & operator*=(const T & v) { x *= v; y *= v; return *this; }
-			Vector2D<T> & operator/=(const T & v) { x /= v; y /= v; return *this; }
+			inline Vector2D<T> & operator+=(const Vector2D<T> & v) { x += v.x; y += v.y; return *this; }
+			inline Vector2D<T> & operator-=(const Vector2D<T> & v) { x -= v.x; y -= v.y; return *this; }
+			inline Vector2D<T> & operator*=(const T & v) { x *= v; y *= v; return *this; }
+			inline Vector2D<T> & operator/=(const T & v) { x /= v; y /= v; return *this; }
 			
 			//Comparison
-			bool operator==(const Vector2D<T> & v) const { return (x == v.x && y == v.y); }
-			bool operator!=(const Vector2D<T> & v) const { return (x != v.x || y != v.y); }
+			inline bool operator==(const Vector2D<T> & v) const { return (x == v.x && y == v.y); }
+			inline bool operator!=(const Vector2D<T> & v) const { return (x != v.x || y != v.y); }
 			
 			//Length
 			inline T length() const { return sqrt(length2()); }
@@ -51,9 +51,9 @@ namespace Voltam {
 			inline T dot(const Vector2D<T> & v) const { return (x*v.x + y*v.y); }
 			
 			//Conversion
-			operator Vector2D<int>() const { return Vector2D<int>(x, y); }
-			operator Vector2D<float>() const { return Vector2D<float>(x, y); }
-			operator Vector2D<double>() const { return Vector2D<double>(x, y); }
+			inline operator Vector2D<int>() const { return Vector2D<int>(x, y); }
+			inline operator Vector2D<float>() const { return Vector2D<float>(x, y); }
+			inline operator Vector2D<double>() const { return Vector2D<double>(x, y); }
 			
 			//Description
 			operator std::string() const { std::stringstream s; s << "(" << x << ", " << y << ")"; return s.str(); }

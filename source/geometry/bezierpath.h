@@ -1,8 +1,10 @@
 #pragma once
 
-#include "vector2d.h"
 #include <gtkmm.h>
 #include <boost/shared_ptr.hpp>
+
+#include "vector2d.h"
+#include "rect.h"
 
 
 namespace Voltam {
@@ -66,6 +68,17 @@ namespace Voltam {
 			 * context.
 			 */
 			void execute(const Cairo::RefPtr<Cairo::Context> & cr) const;
+			
+			/**
+			 * Convenience wrappers around the path operation functions.
+			 */
+			void moveTo(double x, double y);
+			void lineTo(double x, double y);
+			void curveTo(double x, double y, double c1x, double c1y, double c2x, double c2y);
+			
+			void rect(const rectd & r);
+			void rect(const double2 & origin, const double2 & size);
+			void rect(double x, double y, double w, double h);
 		};
 	}
 }
