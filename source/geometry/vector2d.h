@@ -4,7 +4,6 @@
 
 
 namespace Voltam {
-	
 	namespace Geometry {
 		template <typename T>
 		class Vector2D {
