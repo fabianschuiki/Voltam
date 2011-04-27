@@ -41,12 +41,6 @@ include_directories(${LUABIND_INCLUDE_DIRS})
 # List Sources
 set(sources
 	main.cpp
-	
-	# Symbol
-	symbol/symbol.cpp
-	symbol/manager.cpp
-	symbol/generator.cpp
-	symbol/generatormanager.cpp
 )
 
 # Setup Executable
