@@ -41,6 +41,9 @@ include_directories(${LUABIND_INCLUDE_DIRS})
 # List Sources
 set(sources
 	main.cpp
+	
+	# Geometry
+	geometry/bezierpath.cpp
 )
 
 # Setup Executable
