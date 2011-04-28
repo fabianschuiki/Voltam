@@ -63,8 +63,12 @@ namespace Voltam {
 	public:
 		//Construction
 		SmartPointer() : obj(NULL) {}
+		
 		SmartPointer(T * o) : obj(NULL) { *this = o; }
 		SmartPointer(const SmartPointer<T> & p) : obj(NULL) { *this = p; }
+		
+		template <class C> SmartPointer(C * o) : obj(NULL) { *this = o; }
+		template <class C> SmartPointer(const SmartPointer<C> & p) : obj(NULL) { *this = p; }
 		
 		~SmartPointer() { if (obj) release(obj); obj = NULL; }
 		
@@ -82,20 +86,28 @@ namespace Voltam {
 			return *this;
 		}
 		
+		template <class C> SmartPointer<T> & operator =(C * o) {
+			*this = static_cast<T*>(o);
+		}
+		template <class C> SmartPointer<T> & operator =(const SmartPointer<C> & p) {
+			*this = static_cast< const SmartPointer<T> & >(p);
+		}
+		
 		//Dereferencing operators that provide some transparency so that using the smart pointer
 		//feels the same as using the raw pointer itself.
-		T & operator *() const {
+		T& operator *() const {
 			assert(obj != NULL && "tried to * on a NULL pointer");
 			return *obj;
 		}
-		T * operator ->() const {
+		T* operator ->() const {
 			assert(obj != NULL && "tried to -> on a NULL pointer");
 			return obj;
 		}
 		
 		//In case something needs the object itself instead of the raw pointer, we silently step out
 		//of the way.
-		operator T *() const { return obj; }
+		operator T*() const { return obj; }
+		template <class C> operator C*() const { return static_cast<C*>(obj); }
 		
 		//Checking for pointer validity.
 		inline operator bool() const { return (bool)obj; }
