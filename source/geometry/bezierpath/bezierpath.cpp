@@ -34,21 +34,21 @@ const BezierPath::Operations & BezierPath::getOperations() const
 
 void BezierPath::moveTo(double2 point)
 {
-	boost::shared_ptr<MoveToOperation> op(new MoveToOperation());
+	SmartPointer<MoveToOperation> op = new MoveToOperation();
 	op->p = point;
 	operations.push_back(op);
 }
 
 void BezierPath::lineTo(double2 point)
 {
-	boost::shared_ptr<LineToOperation> op(new LineToOperation());
+	SmartPointer<LineToOperation> op = new LineToOperation();
 	op->p = point;
 	operations.push_back(op);
 }
 
 void BezierPath::curveTo(double2 point, double2 controlPoint1, double2 controlPoint2)
 {
-	boost::shared_ptr<CurveToOperation> op(new CurveToOperation());
+	SmartPointer<CurveToOperation> op = new CurveToOperation();
 	op->p = point;
 	op->c1 = controlPoint1;
 	op->c2 = controlPoint2;
@@ -57,7 +57,7 @@ void BezierPath::curveTo(double2 point, double2 controlPoint1, double2 controlPo
 
 void BezierPath::close()
 {
-	operations.push_back(boost::shared_ptr<CloseOperation>(new CloseOperation()));
+	operations.push_back(new CloseOperation());
 }
 
 

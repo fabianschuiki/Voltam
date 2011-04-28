@@ -42,8 +42,11 @@ include_directories(${LUABIND_INCLUDE_DIRS})
 set(sources
 	main.cpp
 	
+	smartpointer.cpp
+	
 	# Geometry
-	geometry/bezierpath.cpp
+	geometry/bezierpath/bezierpath.cpp
+	geometry/bezierpath/invocation.cpp
 )
 
 # Setup Executable

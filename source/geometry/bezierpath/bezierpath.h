@@ -1,17 +1,25 @@
 #pragma once
 
 #include <gtkmm.h>
-#include <boost/shared_ptr.hpp>
 
-#include "vector2d.h"
-#include "rect.h"
+#include "../../smartpointer.h"
+#include "../vector2d.h"
+#include "../rect.h"
 
 
 namespace Voltam {
 	namespace Geometry {
 		class BezierPath {
+			/**
+			 * Inner Classes
+			 */
+		public:
+			class Invocation;
 			
-			//Operations
+			
+			/**
+			 * Operations
+			 */
 		public:
 			struct IOperation {
 				typedef enum {
@@ -46,7 +54,7 @@ namespace Voltam {
 				void execute(const Cairo::RefPtr<Cairo::Context> & cr) const;
 			};
 			
-			typedef std::vector< boost::shared_ptr<IOperation> > Operations;
+			typedef std::vector< SmartPointer<IOperation> > Operations;
 			
 		private:
 			Operations operations;
@@ -82,3 +90,6 @@ namespace Voltam {
 		};
 	}
 }
+
+#include "invocation.h"
+
