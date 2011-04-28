@@ -86,12 +86,8 @@ namespace Voltam {
 			return *this;
 		}
 		
-		template <class C> SmartPointer<T> & operator =(C * o) {
-			*this = static_cast<T*>(o);
-		}
-		template <class C> SmartPointer<T> & operator =(const SmartPointer<C> & p) {
-			*this = static_cast< const SmartPointer<T> & >(p);
-		}
+		template <class C> SmartPointer<T> & operator =(C * o) { *this = static_cast<T*>(o); }
+		template <class C> SmartPointer<T> & operator =(const SmartPointer<C> & p) { *this = static_cast<T*>(p); }
 		
 		//Dereferencing operators that provide some transparency so that using the smart pointer
 		//feels the same as using the raw pointer itself.
