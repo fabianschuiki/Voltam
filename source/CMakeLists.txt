@@ -1,8 +1,8 @@
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#                                                                                                 #
-#   Voltam CMake Configuration                                                                    #
-#                                                                                                 #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#                                                                             #
+#   Voltam CMake Configuration                                                #
+#                                                                             #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 cmake_minimum_required(VERSION 2.6)
 project(voltam)
@@ -66,3 +66,10 @@ target_link_libraries(
 	${LUABIND_LIBRARIES}
 )
 
+
+
+#
+# --- Tests ---
+#
+
+include(tests/CMakeLists.txt)
