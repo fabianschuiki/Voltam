@@ -46,7 +46,8 @@ link_directories(${LUABIND_LIBRARY_DIRS})
 set(sources
 	main.cpp
 	
-	smartpointer.cpp
+	# Misc
+	misc/smartpointer.cpp
 	
 	# Geometry
 	geometry/bezierpath/bezierpath.cpp
