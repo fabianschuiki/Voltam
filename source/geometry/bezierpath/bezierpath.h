@@ -2,7 +2,7 @@
 
 #include <gtkmm.h>
 
-#include "../../smartpointer.h"
+#include "../../misc/smartpointer.h"
 #include "../vector2d.h"
 #include "../rect.h"
 

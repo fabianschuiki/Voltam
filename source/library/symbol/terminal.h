@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-#include "../../smartpointer.h"
+#include "../../misc/smartpointer.h"
 #include "signal.h"
 #include "../../geometry/vector2d.h"
 

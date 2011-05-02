@@ -3,7 +3,7 @@
 //#include "symbol/manager.h"
 #include <iostream>
 #include "geometry/bezierpath/invocation.h"
-#include "smartpointer.h"
+#include "misc/smartpointer.h"
 #include "library/symbol/symbol.h"
 
 using namespace Voltam;

@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "../../smartpointer.h"
+#include "../../misc/smartpointer.h"
 #include "../../geometry/bezierpath/invocation.h"
 
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <gtkmm.h>
-#include "../../smartpointer.h"
+#include "../../misc/smartpointer.h"
 #include "bezierpath.h"
 
 
