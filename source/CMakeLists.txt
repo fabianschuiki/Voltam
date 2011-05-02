@@ -19,18 +19,22 @@ find_package(PkgConfig)
 # gtkmm
 pkg_check_modules(GTKMM gtkmm-2.4)
 include_directories(${GTKMM_INCLUDE_DIRS})
+link_directories(${GTKMM_LIBRARY_DIRS})
 
 # Boost
 find_package(Boost)
 include_directories(${Boost_INCLUDE_DIRS})
+link_directories(${Boost_LIBRARY_DIRS})
 
 # Lua
 find_package(Lua51)
 include_directories(${LUA_INCLUDE_DIR})
+link_directories(${LUA_LIBRARY_DIRS})
 
 # luabind
 pkg_check_modules(LUABIND luabind)
 include_directories(${LUABIND_INCLUDE_DIRS})
+link_directories(${LUABIND_LIBRARY_DIRS})
 
 
 
