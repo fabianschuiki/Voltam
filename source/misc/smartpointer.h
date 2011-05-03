@@ -103,7 +103,7 @@ namespace Voltam {
 		//In case something needs the object itself instead of the raw pointer, we silently step out
 		//of the way.
 		operator T*() const { return obj; }
-		template <class C> operator C*() const { return static_cast<C*>(obj); }
+		template <typename C> operator C() const { return static_cast<C>(obj); }
 		
 		//Checking for pointer validity.
 		inline operator bool() const { return (bool)obj; }
