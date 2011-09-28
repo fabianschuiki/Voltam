@@ -1,9 +1,5 @@
-# Build files
-/build/*
-
-# Backup files
-*~
-
-# Mac OS X specific stuff
 .DS_Store
-
+/build/*
+*~
+*.xcodeproj/**
+!*.xcodeproj/project.pbxproj
