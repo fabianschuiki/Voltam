@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F334AD51433751400598F48 /* liblua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F334AD41433751400598F48 /* liblua.a */; };
+		1F334AF21433776200598F48 /* attiny13.lua in Sources */ = {isa = PBXBuildFile; fileRef = 1F334AF11433776200598F48 /* attiny13.lua */; };
 		8DD76F650486A84900D96B5E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.cpp */; settings = {ATTRIBUTES = (); }; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		08FB7796FE84155DC02AAC07 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../source/main.cpp; sourceTree = "<group>"; };
 		1F334AD41433751400598F48 /* liblua.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua.a; path = /usr/local/lib/liblua.a; sourceTree = "<absolute>"; };
+		1F334AF11433776200598F48 /* attiny13.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; name = attiny13.lua; path = ../../source/attiny13.lua; sourceTree = SOURCE_ROOT; };
 		8DD76F6C0486A84900D96B5E /* library-development */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "library-development"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -56,6 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				08FB7796FE84155DC02AAC07 /* main.cpp */,
+				1F334AF11433776200598F48 /* attiny13.lua */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -119,6 +122,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DD76F650486A84900D96B5E /* main.cpp in Sources */,
+				1F334AF21433776200598F48 /* attiny13.lua in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
