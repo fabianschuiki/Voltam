@@ -138,6 +138,7 @@
 					"_GLIBCXX_DEBUG=1",
 					"_GLIBCXX_DEBUG_PEDANTIC=1",
 				);
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../../../thirdparty/objectivelua/include//**";
 				INSTALL_PATH = /usr/local/bin;
 				PRODUCT_NAME = "library-development";
 			};
@@ -149,6 +150,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../../../thirdparty/objectivelua/include//**";
 				INSTALL_PATH = /usr/local/bin;
 				PRODUCT_NAME = "library-development";
 			};
