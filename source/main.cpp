@@ -1,7 +1,10 @@
 #include <iostream>
+#include <gtkmm.h>
 
 int main(int argc, char * argv[])
 {
-	std::cout << "Hello, World!" << std::endl;
+	Gtk::Main kit(argc, argv);
+	Gtk::Window window;
+	Gtk::Main::run(window);
 	return 0;
 }
