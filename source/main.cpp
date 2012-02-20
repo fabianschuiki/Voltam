@@ -1,10 +1,15 @@
-#include <iostream>
 #include <gtkmm.h>
+
+#include "CircuitEditor.h"
+
 
 int main(int argc, char * argv[])
 {
 	Gtk::Main kit(argc, argv);
-	Gtk::Window window;
-	Gtk::Main::run(window);
+	
+	CircuitEditor editor;
+	
+	Gtk::Main::run(editor);
+	
 	return 0;
 }
