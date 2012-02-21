@@ -14,16 +14,26 @@ set(exec_name voltam)
 add_executable(${exec_name} ${sources})
 
 
-#  Libraries
-#  #########
+###  Packages and Libraries
+###  ======================
 
 find_package(PkgConfig)
 
+# ObjectiveLua
+include_directories  (thirdparty/objectivelua/include)
+
+# Lua51
+find_package(Lua51 REQUIRED)
+include_directories(${LUA_INCLUDE_DIR})
+target_link_libraries(${exec_name} ${LUA_LIBRARY})
+
+# garbage collector
 pkg_check_modules(GC bdw-gc)
 link_directories     (${GC_LIBRARY_DIRS})
 include_directories  (${GC_INCLUDE_DIRS})
 target_link_libraries(${exec_name} ${GC_LIBRARIES})
 
+# gtkmm
 pkg_check_modules(GTKMM gtkmm-3.0)
 link_directories     (${GTKMM_LIBRARY_DIRS})
 include_directories  (${GTKMM_INCLUDE_DIRS})

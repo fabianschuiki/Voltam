@@ -5,6 +5,7 @@
 #include <set>
 
 #include "../Geometry/Geometry.h"
+#include "../lib/Library.h"
 #include "Node.h"
 
 
@@ -21,6 +22,8 @@ namespace Circuit
 
 			typedef std::set<Node *> NodeSet;
 			NodeSet nodes;
+
+			lib::Library lib;
 			
 		protected:
 			virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
