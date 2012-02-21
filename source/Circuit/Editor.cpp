@@ -1,7 +1,8 @@
-#include "CircuitEditor.h"
+#include "Editor.h"
+using namespace Circuit;
 
 
-CircuitEditor::CircuitEditor()
+Editor::Editor()
 {
 	add(editor);
 	editor.show();
@@ -9,6 +10,6 @@ CircuitEditor::CircuitEditor()
 	resize(800, 600);
 }
 
-CircuitEditor::~CircuitEditor()
+Editor::~Editor()
 {
 }

@@ -10,8 +10,8 @@ endif ()
 file(GLOB_RECURSE sources RELATIVE ${PROJECT_SOURCE_DIR} *.cpp)
 
 # add executable
-set(EXECUTABLE_NAME voltam)
-add_executable(${EXECUTABLE_NAME} ${sources})
+set(exec_name voltam)
+add_executable(${exec_name} ${sources})
 
 
 #  Libraries
@@ -19,8 +19,12 @@ add_executable(${EXECUTABLE_NAME} ${sources})
 
 find_package(PkgConfig)
 
+pkg_check_modules(GC bdw-gc)
+link_directories     (${GC_LIBRARY_DIRS})
+include_directories  (${GC_INCLUDE_DIRS})
+target_link_libraries(${exec_name} ${GC_LIBRARIES})
+
 pkg_check_modules(GTKMM gtkmm-3.0)
 link_directories     (${GTKMM_LIBRARY_DIRS})
 include_directories  (${GTKMM_INCLUDE_DIRS})
-target_link_libraries(${EXECUTABLE_NAME}
-                      ${GTKMM_LIBRARIES})
+target_link_libraries(${exec_name} ${GTKMM_LIBRARIES})
