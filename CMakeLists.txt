@@ -7,7 +7,7 @@ if (NOT CMAKE_BUILD_TYPE)
 endif ()
 
 # gather source files
-file(GLOB_RECURSE sources RELATIVE ${PROJECT_SOURCE_DIR} *.cpp)
+file(GLOB_RECURSE sources RELATIVE ${PROJECT_SOURCE_DIR} source/*.cpp)
 
 # add executable
 set(exec_name voltam)
