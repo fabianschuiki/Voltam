@@ -1,5 +1,6 @@
 #pragma once
 #include <objlua/objlua.h>
+#include "../Geometry/Path.h"
 
 namespace lib
 {
@@ -15,6 +16,8 @@ namespace lib
 		bool isValid() const;
 		
 		const std::string & getName() const { return name; }
+		
+		Geometry::Path * generateGeometry();
 		
 	protected:
 		int ref;

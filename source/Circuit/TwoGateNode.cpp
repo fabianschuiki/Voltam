@@ -29,7 +29,19 @@ void TwoGateNode::generateGeometry()
 	
 	Layer * l = new Layer;
 	l->paths.insert(p);
-
+	
+	if (symbol) {
+		Path * p = symbol->generateGeometry();
+		Vector m = Vector((gateA.x + gateB.x) / 2, (gateA.y + gateB.y) / 2);
+		for (int i = 0; i < p->nodes.size(); i++) {
+			Vector & v = p->nodes[i].p;
+			v.x += m.x;
+			v.y += m.y;
+		}
+		l->paths.insert(p);
+		std::cout << "got path " << (void *)p << std::endl;
+	}
+	
 	geometry.layers[0] = l;
 	geometry_valid = true;
 }

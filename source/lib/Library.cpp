@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "../Geometry/Path.h"
 #include "Library.h"
 #include "Symbol.h"
 
@@ -10,6 +11,9 @@ Library::Library()
 {
 	//Install the ObjectiveLua class mechanisms.
 	LuaClass::install(L);
+	
+	//Expose certain classes.
+	Geometry::Path::expose(L);
 
 	//DEBUG: load some symbols
 	loadSymbol("../library/resistor.lua");
@@ -17,6 +21,7 @@ Library::Library()
 	//Initialize the symbols.
 	for (SymbolSet::iterator s = symbols.begin(); s != symbols.end(); s++) {
 		(*s)->init();
+		symbolsByName[(*s)->getName()] = *s;
 	}
 }
 

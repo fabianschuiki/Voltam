@@ -27,8 +27,9 @@ EditorWidget::EditorWidget()
 
 	//DEBUG: nodes
 	TwoGateNode * n = new TwoGateNode;
+	n->symbol = lib.symbolsByName["resistor"];
 	n->setGateA(Vector(200, 200));
-	n->setGateB(Vector(200, 300));
+	n->setGateB(Vector(200, 320));
 	nodes.insert(n);
 }
 
@@ -76,13 +77,13 @@ bool EditorWidget::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
 				else
 					cr->line_to(n.p.x, n.p.y);
 			}
+			cr->close_path();
 			if ((*p)->fill)
 				cr->fill();
 			else
 				cr->stroke();
 		}
 	}
-	cr->stroke();
 	cr->restore();
 	
 	return true;
