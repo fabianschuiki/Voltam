@@ -1,5 +1,14 @@
 The following things needs to be done for Voltam.
 
+ToDo
+----
+
+- Navigation on the schematic, i.e. zooming and scrolling.
+- Adding components to the schematic.
+- Choose type of node (two-gate, tri-gate, quad-gate or multi-gate) based on number of terminals that a symbol generates.
+- Draw electrical connections (a Node with start and end terminals, and intermediate points).
+
+
 Classes
 -------
 Classes that need to be created.
