@@ -7,6 +7,7 @@ ToDo
 - Adding components to the schematic.
 - Choose type of node (two-gate, tri-gate, quad-gate or multi-gate) based on number of terminals that a symbol generates.
 - Draw electrical connections (a Node with start and end terminals, and intermediate points).
+- Change uses of the `Vector` class to `math::Vector2D`
 
 
 Classes

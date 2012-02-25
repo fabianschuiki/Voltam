@@ -6,6 +6,7 @@
 
 #include "../Geometry/Geometry.h"
 #include "../lib/Library.h"
+#include "../math/Vector2D.h"
 #include "Node.h"
 
 
@@ -27,5 +28,21 @@ namespace Circuit
 			
 		protected:
 			virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
+			
+			virtual bool on_button_press_event(GdkEventButton * ev);
+			virtual bool on_button_release_event(GdkEventButton * ev);
+			virtual bool on_motion_notify_event(GdkEventMotion * ev);
+			
+			bool isDragging;
+			int2 dragStartPoint;
+			int2 dragCurrentPoint;
+			int2 dragEndPoint;
+			typedef enum {
+				DragStart,
+				DragUpdate,
+				DragDone,
+				DragCancel
+			} DragState;
+			void on_drag(DragState state);
 	};
 }
