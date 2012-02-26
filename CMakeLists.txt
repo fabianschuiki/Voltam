@@ -6,6 +6,12 @@ if (NOT CMAKE_BUILD_TYPE)
 	set(CMAKE_BUILD_TYPE Debug)
 endif ()
 
+
+# Debugging definitions.
+if (CMAKE_BUILD_TYPE MATCHES Debug)
+	add_definitions("-DBUILD_DEBUG")
+endif()
+
 # gather source files
 file(GLOB_RECURSE sources RELATIVE ${PROJECT_SOURCE_DIR} source/*.cpp)
 

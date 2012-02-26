@@ -4,7 +4,7 @@
 #include <objlua/objlua.h>
 #include <vector>
 
-#include "../Vector.h"
+#include "../math/Vector2D.h"
 
 
 namespace Geometry
@@ -18,9 +18,13 @@ namespace Geometry
 		
 		Path() : LuaExposable<Path>(NULL) {}
 		
-		typedef struct { Vector p; bool move; } Node; 
+		typedef struct { double2 p; bool move; } Node; 
 		std::vector<Node> nodes;
 		bool fill;
+		
+		typedef std::vector<Path *> Vector;
+		
+		void fromStack(lua_State * L, int index);
 		
 	private:
 		static int lua_moveTo(lua_State * L);

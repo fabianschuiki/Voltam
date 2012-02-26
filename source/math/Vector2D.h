@@ -97,6 +97,14 @@ namespace math
 		{
 			return (x*v.x + y*v.y);
 		}
+		
+		inline void fromStack(lua_State * L, int index)
+		{
+			lua_pushnil(L);
+			lua_next(L, index-1); x = lua_tonumber(L, -1); lua_pop(L, 1);
+			lua_next(L, index-1); y = lua_tonumber(L, -1); lua_pop(L, 1);
+			lua_pop(L, 1);
+		}
 	};
 }
 

@@ -14,13 +14,18 @@ function r:gen_geom()
 	return p
 end
 
-
-local c = {
-	name = "capacitor"
-}
-
-function c:gen_geom()
-	print("drawing capacitor")
+function r:generate()
+	print("generating resistor")
+	
+	return {
+		terminals = {
+			a = {pos = {0,  15}, dir = {0,  1}},
+			b = {pos = {0, -15}, dir = {0, -1}}
+		},
+		paths = {
+			{"stroke", {-6, -15}, {6, -15}, {6, 15}, {-6, 15}}
+		}
+	}
 end
 
-return {r, c}
+return {r}

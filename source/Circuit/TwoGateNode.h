@@ -10,15 +10,15 @@ namespace Circuit
 		public:
 			TwoGateNode() { symbol = NULL; }
 			
-			void setGateA(const Vector & v);
-			void setGateB(const Vector & v);
-			const Vector & getGateA() const { return gateA; }
-			const Vector & getGateB() const { return gateB; }
+			void setGateA(const double2 & v);
+			void setGateB(const double2 & v);
+			const double2 & getGateA() const { return gateA; }
+			const double2 & getGateB() const { return gateB; }
 			
 			lib::Symbol * symbol;
 			
 		private:
-			Vector gateA, gateB;
+			double2 gateA, gateB;
 
 		protected:
 			void generateGeometry();

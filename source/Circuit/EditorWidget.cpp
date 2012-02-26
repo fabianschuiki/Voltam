@@ -11,13 +11,13 @@ using Geometry::Geometry;
 
 EditorWidget::EditorWidget()
 {
-	add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK | Gdk::BUTTON_MOTION_MASK | Gdk::MOTION_NOTIFY);
+	add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK | Gdk::BUTTON_MOTION_MASK);
 	
 	//DEBUG: nodes
 	TwoGateNode * n = new TwoGateNode;
 	n->symbol = lib.symbolsByName["resistor"];
-	n->setGateA(Vector(200, 200));
-	n->setGateB(Vector(200, 320));
+	n->setGateA(double2(200, 200));
+	n->setGateB(double2(200, 320));
 	nodes.insert(n);
 }
 
@@ -110,8 +110,8 @@ void EditorWidget::on_drag(DragState state)
 	if (state == DragDone) {
 		TwoGateNode * n = new TwoGateNode;
 		n->symbol = lib.symbolsByName["resistor"];
-		n->setGateA(Vector(dragStartPoint.x, dragStartPoint.y));
-		n->setGateB(Vector(dragEndPoint.x, dragEndPoint.y));
+		n->setGateA(dragStartPoint);
+		n->setGateB(dragEndPoint);
 		nodes.insert(n);
 	}
 }
