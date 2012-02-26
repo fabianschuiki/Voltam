@@ -19,12 +19,8 @@ namespace lib
 		const std::string & getName() const { return name; }
 		
 		void update();
-		Geometry::Geometry geometry;
 		SymbolTerminal::Set terminals;
 		Geometry::Path::Vector paths;
-		
-		//deprecated
-		Geometry::Path * generateGeometry();
 		
 	protected:
 		int ref;

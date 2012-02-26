@@ -22,7 +22,11 @@ void TwoGateNode::setGateB(const double2 & v)
 
 void TwoGateNode::generateGeometry()
 {
-	cout << "generating geometry" << endl;
+	LOG(DEBUG, "updating geometry");
+	
+	
+	
+	/*cout << "generating geometry" << endl;
 	Path * p = new Path;
 	p->nodes.push_back((Path::Node){gateA, true});
 	p->nodes.push_back((Path::Node){gateB, false});
@@ -42,6 +46,6 @@ void TwoGateNode::generateGeometry()
 		std::cout << "got path " << (void *)p << std::endl;
 	}
 	
-	geometry.layers[0] = l;
+	geometry.layers[0] = l;*/
 	Node::generateGeometry();
 }
