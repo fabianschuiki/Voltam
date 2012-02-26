@@ -1,21 +1,22 @@
 #include "Node.h"
+
 using namespace Circuit;
 
 
 Node::Node()
 {
-	geometry_valid = false;
+	valid = false;
 }
 
-Geometry::Geometry & Node::getGeometry()
+Node::Layers & Node::getLayers()
 {
-	if (!geometry_valid)
-		generateGeometry();
-	return geometry;
+	if (!valid)
+		update();
+	return layers;
 }
 
-void Node::invalidateGeometry()
+void Node::invalidate()
 {
-	geometry_valid = false;
-	geometry.layers.clear();
+	layers.clear();
+	valid = false;
 }

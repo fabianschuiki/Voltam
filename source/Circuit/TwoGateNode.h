@@ -21,6 +21,6 @@ namespace Circuit
 			double2 gateA, gateB;
 
 		protected:
-			void generateGeometry();
+			void update();
 	};
 }

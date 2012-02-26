@@ -11,9 +11,6 @@ Library::Library()
 {
 	//Install the ObjectiveLua class mechanisms.
 	LuaClass::install(L);
-	
-	//Expose certain classes.
-	Geometry::Path::expose(L);
 
 	//DEBUG: load some symbols
 	loadSymbol("../library/resistor.lua");

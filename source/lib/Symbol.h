@@ -20,7 +20,7 @@ namespace lib
 		
 		void update();
 		SymbolTerminal::Set terminals;
-		Geometry::Path::Vector paths;
+		Geometry::Path::Set paths;
 		
 	protected:
 		int ref;

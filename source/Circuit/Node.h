@@ -1,5 +1,6 @@
 #pragma once
 #include <gc_cpp.h>
+#include <map>
 #include <set>
 #include "../Geometry/Geometry.h"
 
@@ -8,15 +9,19 @@ namespace Circuit
 {
 	class Node : public gc
 	{
-		public:
-			Node();
-			
-			Geometry::Geometry & getGeometry();
-			void invalidateGeometry();
-			
-		protected:
-			Geometry::Geometry geometry;
-			bool geometry_valid;
-			virtual void generateGeometry() { geometry_valid = true; }
+	public:
+		typedef std::map<std::string, Geometry::Path::Set> Layers;
+	
+		Node();
+		
+		Layers & getLayers();
+		
+		void invalidate();
+		
+	protected:
+		Layers layers;
+		
+		bool valid;
+		virtual void update() = 0;
 	};
 }

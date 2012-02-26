@@ -13,18 +13,41 @@ EditorWidget::EditorWidget()
 {
 	add_events(Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK | Gdk::BUTTON_MOTION_MASK);
 	
+	//Default layers.
+	Layer * l;
+	l = new Layer;
+	l->name = "symbol";
+	l->color.set_hsv(330, 1, 0.5);
+	layers.push_back(l);
+	
 	//DEBUG: nodes
 	TwoGateNode * n = new TwoGateNode;
 	n->symbol = lib.symbolsByName["resistor"];
 	n->setGateA(double2(200, 200));
 	n->setGateB(double2(200, 300));
 	nodes.insert(n);
+	
+	updateLayers();
 }
 
 EditorWidget::~EditorWidget()
 {
 }
 
+/** Compiles the geometry from all nodes down to one set of layers. */
+void EditorWidget::updateLayers()
+{
+	for (Layer::Vector::iterator il = layers.begin(); il != layers.end(); il++) {
+		Layer * l = *il;
+		l->paths.clear();
+		for (NodeSet::iterator in = nodes.begin(); in != nodes.end(); in++) {
+			Node * n = *in;
+			Path::Set & np = n->getLayers()[l->name];
+			l->paths.insert(np.begin(), np.end());
+		}
+	}
+	queue_draw();
+}
 
 bool EditorWidget::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
 {
@@ -50,29 +73,25 @@ bool EditorWidget::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
 	cr->restore();
 
 	//Draw the layers.
-	//TODO: draw other layers than layer 0
-	cr->save();
-	cr->set_source_rgba(0.5, 0, 0.25, 1);
-	for (NodeSet::iterator n = nodes.begin(); n != nodes.end(); n++) {
-		Layer * l = (*n)->getGeometry().layers[0];
-		if (!l) continue;
-		
-		for (Layer::PathSet::iterator p = l->paths.begin(); p != l->paths.end(); p++) {
-			for (int i = 0; i < (*p)->nodes.size(); i++) {
-				const Path::Node & n = (*p)->nodes[i];
+	for (Layer::Vector::iterator il = layers.begin(); il != layers.end(); il++) {
+		Layer * l = *il;
+		cr->save();
+		cr->set_source_rgb(l->color.get_red_p(), l->color.get_green_p(), l->color.get_blue_p());
+		for (Path::Set::iterator ip = l->paths.begin(); ip != l->paths.end(); ip++) {
+			Path * p = *ip;
+			for (int i = 0; i < p->nodes.size(); i++) {
+				const Path::Node & n = p->nodes[i];
 				if (n.move)
 					cr->move_to(n.p.x, n.p.y);
 				else
 					cr->line_to(n.p.x, n.p.y);
 			}
-			cr->close_path();
-			if ((*p)->fill)
-				cr->fill();
-			else
-				cr->stroke();
+			if (p->close)  cr->close_path();
+			if (p->fill)   cr->fill();
+			if (p->stroke) cr->stroke();
 		}
+		cr->restore();
 	}
-	cr->restore();
 	
 	return true;
 }
@@ -120,16 +139,16 @@ void EditorWidget::on_drag(DragState state)
 			draggingNode->setGateA(gridStart);
 			draggingNode->setGateB(gridCurrent);
 			nodes.insert(draggingNode);
-			this->queue_draw();
+			updateLayers();
 		} break;
 		case DragUpdate: {
 			draggingNode->setGateB(gridCurrent);
-			this->queue_draw();
+			updateLayers();
 		} break;
 		case DragDone: {
 			draggingNode->setGateB(gridEnd);
 			draggingNode = NULL;
-			this->queue_draw();
+			updateLayers();
 		} break;
 	}
 }

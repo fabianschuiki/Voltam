@@ -88,7 +88,7 @@ void Symbol::update()
 			for (lua_pushnil(L); lua_next(L, -2); lua_pop(L, 1)) {
 				Geometry::Path * p = new Geometry::Path;
 				p->fromStack(L, -1);
-				paths.push_back(p);
+				paths.insert(p);
 			}
 		}
 	}

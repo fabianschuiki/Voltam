@@ -9,7 +9,7 @@ function r:generate()
 			b = {pos = { 1.5, 0}, dir = { 1.5, 0}}
 		},
 		paths = {
-			{	"stroke",
+			{	"stroke", "close",
 				{-1.5, -0.5},
 				{ 1.5, -0.5},
 				{ 1.5,  0.5},

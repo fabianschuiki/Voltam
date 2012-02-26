@@ -2,7 +2,7 @@
 #include <cmath>
 #include <sstream>
 #include <string>
-
+#include <objlua/lua.h>
 
 namespace math
 {
