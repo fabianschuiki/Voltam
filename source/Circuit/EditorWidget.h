@@ -8,6 +8,7 @@
 #include "../lib/Library.h"
 #include "../math/Vector2D.h"
 #include "Node.h"
+#include "TwoGateNode.h"
 
 
 namespace Circuit
@@ -44,5 +45,7 @@ namespace Circuit
 				DragCancel
 			} DragState;
 			void on_drag(DragState state);
+			
+			TwoGateNode * draggingNode;
 	};
 }

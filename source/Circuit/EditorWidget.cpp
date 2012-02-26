@@ -17,7 +17,7 @@ EditorWidget::EditorWidget()
 	TwoGateNode * n = new TwoGateNode;
 	n->symbol = lib.symbolsByName["resistor"];
 	n->setGateA(double2(200, 200));
-	n->setGateB(double2(200, 320));
+	n->setGateB(double2(200, 300));
 	nodes.insert(n);
 }
 
@@ -38,11 +38,11 @@ bool EditorWidget::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
 	cr->paint();
 	cr->set_source_rgb(0.9, 0.9, 0.9);
 	cr->set_line_width(1);
-	for (int x = 0; x < w; x += 15) {
+	for (int x = 0; x < w; x += 20) {
 		cr->move_to(x+0.5, 0);
 		cr->line_to(x+0.5, h);
 	}
-	for (int y = 0; y < h; y += 15) {
+	for (int y = 0; y < h; y += 20) {
 		cr->move_to(0, y+0.5);
 		cr->line_to(w, y+0.5);
 	}
@@ -106,12 +106,30 @@ bool EditorWidget::on_motion_notify_event(GdkEventMotion * ev)
 
 void EditorWidget::on_drag(DragState state)
 {
-	std::cout << "on_drag " << state << std::endl;
-	if (state == DragDone) {
-		TwoGateNode * n = new TwoGateNode;
-		n->symbol = lib.symbolsByName["resistor"];
-		n->setGateA(dragStartPoint);
-		n->setGateB(dragEndPoint);
-		nodes.insert(n);
+	int2 gridStart   = dragStartPoint   / 20;
+	int2 gridCurrent = dragCurrentPoint / 20;
+	int2 gridEnd     = dragEndPoint     / 20;
+	gridStart   *= 20;
+	gridCurrent *= 20;
+	gridEnd     *= 20;
+	
+	switch (state) {
+		case DragStart: {
+			draggingNode = new TwoGateNode;
+			draggingNode->symbol = lib.symbolsByName["resistor"];
+			draggingNode->setGateA(gridStart);
+			draggingNode->setGateB(gridCurrent);
+			nodes.insert(draggingNode);
+			this->queue_draw();
+		} break;
+		case DragUpdate: {
+			draggingNode->setGateB(gridCurrent);
+			this->queue_draw();
+		} break;
+		case DragDone: {
+			draggingNode->setGateB(gridEnd);
+			draggingNode = NULL;
+			this->queue_draw();
+		} break;
 	}
 }

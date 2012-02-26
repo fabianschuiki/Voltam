@@ -17,6 +17,7 @@ Library::Library()
 
 	//DEBUG: load some symbols
 	loadSymbol("../library/resistor.lua");
+	loadSymbol("../library/diode.lua");
 	
 	//Initialize the symbols.
 	for (SymbolSet::iterator s = symbols.begin(); s != symbols.end(); s++) {

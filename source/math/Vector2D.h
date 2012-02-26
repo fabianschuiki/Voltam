@@ -1,4 +1,5 @@
 #pragma once
+#include <cmath>
 #include <sstream>
 #include <string>
 
@@ -78,19 +79,21 @@ namespace math
 		inline Vector2D<T>& operator/= (T v)	{ x /= v; y /= v; return *this; }
 		
 		//Operations
-		inline T length() const
-		{
-			return sqrt(x*x + y*y);
-		}
+		inline T length2() const { return x*x + y*y; }
+		inline T length()  const { return sqrt(length2()); }
 		
-		double normalize()
+		inline Vector2D<T> unit() const
 		{
-			T length = this->length();
-			
-			x /= length;
-			y /= length;
-			
-			return length;
+			Vector2D<T> v = *this;
+			v.unitize();
+			return v;
+		}
+		inline T unitize()
+		{
+			T l = this->length();
+			x /= l;
+			y /= l;
+			return l;
 		}
 		
 		inline T dot(Vector2D<T> v) const
