@@ -41,6 +41,9 @@ target_link_libraries(${exec_name} ${GC_LIBRARIES})
 
 # gtkmm
 pkg_check_modules(GTKMM gtkmm-3.0)
+if (NOT GTKMM_FOUND)
+	pkg_check_modules(GTKMM gtkmm-2.4)
+endif()
 link_directories     (${GTKMM_LIBRARY_DIRS})
 include_directories  (${GTKMM_INCLUDE_DIRS})
 target_link_libraries(${exec_name} ${GTKMM_LIBRARIES})
